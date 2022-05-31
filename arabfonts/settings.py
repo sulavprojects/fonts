@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-import mimetypes
+#import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-mimetypes.add_type("text/css", ".css", True)
+# mimetypes.add_type("text/css", ".css", True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +28,7 @@ mimetypes.add_type("text/css", ".css", True)
 SECRET_KEY = 'django-insecure-(w4!+4bfxa5%)esio)egs0*ybll_lah4h1-z(4c5+g$vms00t@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['arabfontproject.herokuapp.com', '127.0.0.1', '*']
 
@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ['arabfontproject.herokuapp.com', '127.0.0.1', '*']
 SITE_ID = 1
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,8 +52,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,18 +132,18 @@ USE_TZ = True
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 
-STATICFILES_DIR = {
-    os.path.join(BASE_DIR , "/public/static")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
     
 
-}
+
 MEDIA_ROOT = os.path.join(BASE_DIR , 'public/static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
